@@ -1,32 +1,27 @@
 import axios from "axios";
-import react, { useState } from "react";
+import React from "react";
 
-function App() {
-  const [todos, setTodos] = useState();
+class App extends React.Component {
+  state = {
+    todos: [],
+  };
 
-  function componentDidMount() {
-    let todos;
-    axios
-      .get("http://localhost:8000/todos/")
-      .then((res) => {
-        todos = res.data;
-        setTodos(todos);
-      })
-      .catch((err) => {});
+  componentDidMount() {
+    axios.get(`http://localhost:8000/todos/`).then((res) => {
+      const todos = res.data;
+      this.setState(todos);
+    });
   }
-  return (
-    <div>
-      <form method="POST">
-        <input type="text" placeholder="Enter todo" />
-        <input type="submit" value="add" />
-      </form>
+
+  render() {
+    return (
       <ul>
-        {todos.map((todo) => {
-          return <li>{todo}</li>;
-        })}
+        {this.state.todos.map((todo) => (
+          <li key={todo.id}>{todo.todo}</li>
+        ))}
       </ul>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;
