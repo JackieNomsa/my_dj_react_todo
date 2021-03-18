@@ -1,23 +1,18 @@
 import axios from "axios";
 import React from "react";
 
+let mydata;
+fetch("https://localhost:8000/todos")
+  .then((response) => response.text())
+  .then((data) => (mydata = data));
+console.log(mydata);
+
 class App extends React.Component {
-  state = {
-    todos: [],
-  };
-
-  componentDidMount() {
-    axios.get(`http://localhost:8000/todos/`).then((res) => {
-      const todos = res.data;
-      this.setState(todos);
-    });
-  }
-
   render() {
     return (
       <ul>
-        {this.state.todos.map((todo) => (
-          <li key={todo.id}>{todo.todo}</li>
+        {mydata.map(({ data }) => (
+          <li key={data.id}>{data.todo}</li>
         ))}
       </ul>
     );
