@@ -1,18 +1,18 @@
 import axios from "axios";
 import React from "react";
 
-function fetchData() {}
 let mydata;
-fetch("https://localhost:8000/todos")
-  .then((response) => response.text())
-  .then((data) => (mydata = data));
-console.log(mydata);
+axios.get("http://localhost:8000/todos/").then((res) => {
+  mydata = res.data;
+  return mydata;
+});
 
 class App extends React.Component {
   render() {
+    console.log(mydata);
     return (
       <ul>
-        <li></li>
+        <li>{mydata}</li>
       </ul>
     );
   }
