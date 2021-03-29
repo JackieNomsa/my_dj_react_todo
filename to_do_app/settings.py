@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('TODO_DJ_R_K')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost']
+ALLOWED_HOSTS = ['127.0.0.1:3000','localhost:3000']
 
 
 # Application definition

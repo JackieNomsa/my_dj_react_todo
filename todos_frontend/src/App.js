@@ -1,21 +1,26 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-let mydata;
-axios.get("http://localhost:8000/todos/").then((res) => {
-  mydata = res.data;
-  return mydata;
-});
+function App() {
+  const [todos, setTodos] = useState(null);
 
-class App extends React.Component {
-  render() {
-    console.log(mydata);
-    return (
-      <ul>
-        <li>{mydata}</li>
-      </ul>
-    );
-  }
+  useEffect(() => {
+    fetchData();
+  });
+
+  const fetchData = () => {
+    axios("http://localhost:8000/todos/").then((res) => {
+      setTodos(res.data);
+    });
+    return todos;
+  };
+  return (
+    <ul>
+      {todos.map((todo) => {
+        return <li key={todo.id}>{todo.todo}</li>;
+      })}
+    </ul>
+  );
 }
 
 export default App;
