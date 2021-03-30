@@ -8,17 +8,18 @@ function App() {
     fetchData();
   });
 
-  const fetchData = () => {
-    axios("http://localhost:8000/todos/").then((res) => {
+  const fetchData = async () => {
+    await axios("http://localhost:8000/todos/").then((res) => {
       setTodos(res.data);
     });
     return todos;
   };
+  console.log(todos);
   return (
     <ul>
-      {todos.map((todo) => {
+      {/* {todos.map((todo) => {
         return <li key={todo.id}>{todo.todo}</li>;
-      })}
+      })} */}
     </ul>
   );
 }
