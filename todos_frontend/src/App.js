@@ -5,23 +5,15 @@ function App() {
   const [todos, setTodos] = useState(null);
 
   useEffect(() => {
+    async function fetchData() {
+      const data = await axios.get("http://localhost:8000/todos/");
+      setTodos(data.data);
+      return todos;
+    }
     fetchData();
-  });
+  }, []);
 
-  const fetchData = async () => {
-    await axios("http://localhost:8000/todos/").then((res) => {
-      setTodos(res.data);
-    });
-    return todos;
-  };
-  console.log(todos);
-  return (
-    <ul>
-      {/* {todos.map((todo) => {
-        return <li key={todo.id}>{todo.todo}</li>;
-      })} */}
-    </ul>
-  );
+  return <p>cheese</p>;
 }
 
 export default App;

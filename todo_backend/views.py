@@ -1,8 +1,11 @@
+from rest_framework.decorators import api_view, renderer_classes
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
 from rest_framework import status
 from todo_backend.serializer import TodoSerializer
 from todo_backend.models import Todos
+
+@api_view(('GET',))
 
 @csrf_exempt
 def todoList(request):
