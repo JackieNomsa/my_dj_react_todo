@@ -13,7 +13,8 @@ function App() {
     }
     fetchData();
   }, []);
-
-  return <p>hi</p>;
+  console.log(todos);
+  const todo = todos.map((item) => <li key={item.id}>{item.todo}</li>);
+  return <p>{todo}</p>;
 }
 export default App;
