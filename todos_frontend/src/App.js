@@ -6,14 +6,14 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
-      const data = await axios.get("http://localhost:8000/todos/");
-      setTodos(data.data);
+      fetch("http://localhost:8000/todos/")
+        .then((response) => response.json())
+        .then((data) => setTodos(data));
       return todos;
     }
     fetchData();
   }, []);
 
-  return <p>cheese</p>;
+  return <p>hi</p>;
 }
-
 export default App;
