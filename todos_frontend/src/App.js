@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 function App() {
@@ -8,13 +7,14 @@ function App() {
     async function fetchData() {
       fetch("http://localhost:8000/todos/")
         .then((response) => response.json())
-        .then((data) => setTodos(data));
+        .then((data) => setTodos(data))
+        .catch((error) => console.log("Error", error));
       return todos;
     }
     fetchData();
-  }, []);
-  console.log(todos);
+  }, [todos]);
+
   const todo = todos.map((item) => <li key={item.id}>{item.todo}</li>);
-  return <p>{todo}</p>;
+  return <div>{todo}</div>;
 }
 export default App;
